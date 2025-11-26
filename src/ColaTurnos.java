@@ -1,7 +1,7 @@
 public class ColaTurnos {
     private NodoCola frente = null;
     private NodoCola fondo = null;
-
+    //Alterna turnos como una fila (FIFO: primero en entrar, primero sale).
     public void encolar(String n) {
         NodoCola nuevo = new NodoCola(n);
         if (fondo == null) {

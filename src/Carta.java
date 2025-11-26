@@ -17,7 +17,7 @@ public class Carta {
 
     @Override
     public String toString() {
-        return valor + " de " + palo.nombreCompleto() + " " + palo;
+        return valor + " de " + palo.nombreCompleto() + " " + palo; // Al crear una carta, new Carta("7", Palo.CORAZONES) sale "7 de Corazones ♥".
     }
 
     public String getValor() { return valor; }

@@ -10,7 +10,7 @@ public class Baraja {
     }
 
     private void crearBaraja() {
-        String[] valores = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+        String[] valores = {"A","2","3","4","5","6","7","8","9","10","J","Q","K"}; // lista de valores
         for (Palo palo : Palo.values()) {
             for (String valor : valores) {
                 agregarAlFinal(new Carta(valor, palo));
@@ -33,7 +33,7 @@ public class Baraja {
     private void mezclar() {
         Carta[] array = toArray();
         Random random = new java.util.Random();
-        for (int i = array.length-1; i > 0; i--) {
+        for (int i = array.length-1; i > 0; i--) {  //Fisher-Yates
             int j = random.nextInt(i+1);
             Carta temporal = array[i];
             array[i] = array[j];
@@ -55,12 +55,12 @@ public class Baraja {
         return array;
     }
 
-    public Carta robarCarta() {
+    public Carta tomarCarta() { // Saca la primera carta y actualiza la cabeza
         if (cabeza == null) return null;
-        Carta c = cabeza.carta;
+        Carta carta = cabeza.carta;
         cabeza = cabeza.siguiente;
         tamaño--;
-        return c;
+        return carta;
     }
 
     // MergeSort
@@ -68,14 +68,14 @@ public class Baraja {
         cabeza = mergeSort(cabeza);
     }
 
-    private NodoLista mergeSort(NodoLista h) {
-        if (h == null || h.siguiente == null) return h;
-        NodoLista medio = obtenerMedio(h);
+    private NodoLista mergeSort(NodoLista nodo) {
+        if (nodo == null || nodo.siguiente == null) return nodo;
+        NodoLista medio = obtenerMedio(nodo);
         NodoLista sig = medio.siguiente;
         medio.siguiente = null;
-        NodoLista izq = mergeSort(h);
-        NodoLista der = mergeSort(sig);
-        return merge(izq, der);
+        NodoLista izquierda = mergeSort(nodo);
+        NodoLista derecha = mergeSort(sig);
+        return merge(izquierda, derecha);
     }
 
     private NodoLista merge(NodoLista a, NodoLista b) {
@@ -100,8 +100,8 @@ public class Baraja {
         };
     }
 
-    private NodoLista obtenerMedio(NodoLista h) {
-        NodoLista lento = h, rapido = h;
+    private NodoLista obtenerMedio(NodoLista nodo) {
+        NodoLista lento = nodo, rapido = nodo;
         while (rapido.siguiente != null && rapido.siguiente.siguiente != null) {
             lento = lento.siguiente;
             rapido = rapido.siguiente.siguiente;

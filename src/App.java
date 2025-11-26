@@ -23,10 +23,10 @@ public class App {
         tabla.mostrar();
 
         // Repartir cartas iniciales
-        humano.recibirCarta(baraja.robarCarta());
-        crupier.recibirCarta(baraja.robarCarta());
-        humano.recibirCarta(baraja.robarCarta());
-        crupier.recibirCarta(baraja.robarCarta());
+        humano.recibirCarta(baraja.tomarCarta());
+        crupier.recibirCarta(baraja.tomarCarta());
+        humano.recibirCarta(baraja.tomarCarta());
+        crupier.recibirCarta(baraja.tomarCarta());
 
         // Turno del jugador
         while (true) {
@@ -35,9 +35,9 @@ public class App {
             if (humano.obtenerPuntaje() >= 21) break;
             System.out.print("¿Otra carta? (s/n): ");
             if (!entradaTeclado.nextLine().equalsIgnoreCase("s")) break;
-            Carta c = baraja.robarCarta();
-            humano.recibirCarta(c);
-            historial.push(c);
+            Carta carta = baraja.tomarCarta();
+            humano.recibirCarta(carta);
+            historial.push(carta);
         }
 
         // Turno del crupier
@@ -46,9 +46,9 @@ public class App {
             crupier.mostrar();
             while (crupier.obtenerPuntaje() < 17) {
                 System.out.println("El crupier pide carta...");
-                Carta c = baraja.robarCarta();
-                crupier.recibirCarta(c);
-                historial.push(c);
+                Carta carta = baraja.tomarCarta();
+                crupier.recibirCarta(carta);
+                historial.push(carta);
                 crupier.mostrar();
             }
             System.out.println("El crupier se planta.");

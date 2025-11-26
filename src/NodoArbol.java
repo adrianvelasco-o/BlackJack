@@ -1,7 +1,7 @@
 
 public class NodoArbol {
     String accion;
-    NodoArbol izq, der;
+    NodoArbol izquierda, derecha;
 
     public NodoArbol(String accion) {
         this.accion = accion;

@@ -1,4 +1,4 @@
-public class PilaHistorial {
+public class PilaHistorial { //Registra las últimas cartas jugadas (LIFO: último en entrar, primero en salir).
     private NodoPila cima = null;
 
     public void push(Carta carta) {
