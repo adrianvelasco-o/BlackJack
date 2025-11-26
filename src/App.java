@@ -14,34 +14,34 @@ public class App {
         ArbolDecisionCrupier arbol = new ArbolDecisionCrupier();
         TablaHashJugadores tabla = new TablaHashJugadores();
 
-        Jugador humano = new Jugador(nombreJugador);
+        Jugador persona = new Jugador(nombreJugador);
         Jugador crupier = new Jugador("crupier");
 
-        // Insertamos con el nombre REAL del jugador
-        tabla.insertar(nombreJugador, humano);
+        // Insertamos con el nombre del jugador
+        tabla.insertar(nombreJugador, persona);
         tabla.insertar("crupier", crupier);
         tabla.mostrar();
 
         // Repartir cartas iniciales
-        humano.recibirCarta(baraja.tomarCarta());
+        persona.recibirCarta(baraja.tomarCarta());
         crupier.recibirCarta(baraja.tomarCarta());
-        humano.recibirCarta(baraja.tomarCarta());
+        persona.recibirCarta(baraja.tomarCarta());
         crupier.recibirCarta(baraja.tomarCarta());
 
         // Turno del jugador
         while (true) {
             System.out.println("\nTurno de: " + nombreJugador);
-            humano.mostrar();
-            if (humano.obtenerPuntaje() >= 21) break;
+            persona.mostrar();
+            if (persona.obtenerPuntaje() >= 21) break;
             System.out.print("¿Otra carta? (s/n): ");
             if (!entradaTeclado.nextLine().equalsIgnoreCase("s")) break;
             Carta carta = baraja.tomarCarta();
-            humano.recibirCarta(carta);
+            persona.recibirCarta(carta);
             historial.push(carta);
         }
 
         // Turno del crupier
-        if (humano.obtenerPuntaje() <= 21) {
+        if (persona.obtenerPuntaje() <= 21) {
             System.out.println("\nTurno del crupier");
             crupier.mostrar();
             while (crupier.obtenerPuntaje() < 17) {
@@ -56,7 +56,7 @@ public class App {
 
         // RESULTADO FINAL
         System.out.println("\n=== RESULTADO FINAL ===");
-        humano.mostrar();
+        persona.mostrar();
         crupier.mostrar();
 
         int posH = tabla.buscar(nombreJugador);
